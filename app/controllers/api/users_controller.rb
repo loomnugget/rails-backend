@@ -1,10 +1,11 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
   def index
     @users = User.all
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
+    @user.skip_confirmation!
     if @user.save!
       @user
     else

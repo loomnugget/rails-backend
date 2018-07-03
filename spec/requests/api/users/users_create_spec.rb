@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "users#create", type: :request do
+describe "api::users#create", type: :request do
   let(:default_params) {{ user: {
     first_name: "Test First",
     last_name: "Test Last",
@@ -10,13 +10,13 @@ describe "users#create", type: :request do
   } }}
 
   it "should respond with success" do
-    post "/users", params: default_params
+    post "/api/users", params: default_params
     expect(response).to have_http_status(:ok)
   end
 
   it "should create a user" do
     expect{
-      post "/users", params: default_params
+      post "/api/users", params: default_params
     }.to change(User, :count).by(1)
   end
 end
