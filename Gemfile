@@ -20,6 +20,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'guard-rspec'
   gem 'parallel_tests'
+  gem 'webmock'
 end
 
 group :development do

@@ -22,8 +22,7 @@ module ActionCableExample
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:put, :get, :post, :options, :delete],
-            :expose => ['access-token', 'client', 'expiry', 'token-type', 'uid',
-                        'user-id', 'content-disposition']
+            :expose => ['access-token', 'client', 'expiry', 'token-type', 'uid', 'content-disposition']
       end
     end
 

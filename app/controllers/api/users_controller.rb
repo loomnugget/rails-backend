@@ -1,12 +1,11 @@
-class Api::UsersController < ApplicationController
+class Api::UsersController < ApiController
   def index
     @users = User.all
   end
 
   def create
-    @user = User.new(user_params)
-    @user.skip_confirmation!
-    if @user.save!
+    @user = UserService::CreateUser.new(user_params).call
+    if @user
       @user
     else
       render json: {
