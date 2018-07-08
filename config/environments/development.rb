@@ -2,14 +2,12 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Action Cable Config
-  config.action_cable.url = 'http://localhost:3000/cable'
-  config.web_socket_server_url = 'ws://localhost:3000/cable'
-  config.action_cable.allowed_request_origins = [
-    # Local address of our RoR server
-    'http://localhost:3000',
-    # Local address we use for our React standalone client
-    'http://localhost:8000',
-  ]
+  # config.action_cable.url = 'http://localhost:3000/cable'
+  # config.web_socket_server_url = 'ws://localhost:3000/cable'
+  # config.action_cable.allowed_request_origins = [
+  #   'http://localhost:3005',
+  #   'http://localhost:3000',
+  # ]
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # In the development environment your application's code is reloaded on
@@ -22,21 +20,8 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
-
-  # Enable/disable caching. By default caching is disabled.
-  # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
-  end
+  config.action_controller.perform_caching = false
+  config.cache_store = :null_store
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   # config.active_storage.service = :local
