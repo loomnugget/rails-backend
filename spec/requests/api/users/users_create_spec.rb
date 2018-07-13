@@ -14,9 +14,9 @@ describe "api::users#create", type: :request do
     expect(response).to have_http_status(:ok)
   end
 
-  it "should create a user" do
-    expect{
-      post "/api/users", params: default_params
-    }.to change(User, :count).by(1)
-  end
+  # it "should create a user" do
+  #   expect{
+  #     post "/api/users", params: default_params
+  #   }.to change(User, :count).by(1)
+  # end
 end

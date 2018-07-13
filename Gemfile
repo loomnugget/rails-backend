@@ -15,11 +15,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   gem 'guard'
+  gem 'faker'
   gem 'airborne'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'guard-rspec'
-  gem 'parallel_tests'
+  # gem 'parallel_tests'
   gem 'webmock'
 end
 

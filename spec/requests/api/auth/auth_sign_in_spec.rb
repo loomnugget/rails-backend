@@ -7,8 +7,8 @@ require "rails_helper"
 #   "uid"=>"test@test.com" }
 
 describe "auth#sign_in", type: :request do
-  let!(:user) { create(:user, email: "test@bmail.com") }
-  let!(:default_params) {{ email: user.email, password: "password" }}
+  let!(:user) { create(:user) }
+  let!(:default_params) {{ email: user.email, password: user.password }}
   let!(:invalid_params) {{ email: user.email, password: "badpassword" }}
   let!(:default_headers) {{ 'CONTENT_TYPE' => "application/json", "ACCEPT" => "application/json" }}
 

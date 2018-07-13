@@ -58,9 +58,19 @@ RSpec.configure do |config|
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
+  gems_to_keep_out_of_backtrace = %w[warden rack railties airborne]
 
-  # config.before :each, type: :request do
-  #   sign_in_user
-  # end
+  gems_to_keep_out_of_backtrace.each do |gem_name|
+    config.filter_gems_from_backtrace(gem_name)
+  end
+
+  include AuthenticationHelper
+
+  config.before :suite do
+    find_or_create_default_user
+  end
+
+  config.before :each, type: :request do
+    sign_in_user
+  end
 end

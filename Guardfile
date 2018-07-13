@@ -17,10 +17,6 @@ directories %w(app lib config spec) \
 
 rspec_options = {
     cmd: "bundle exec spring rspec",
-    run_all: {
-        cmd: "bundle exec parallel_rspec -o '",
-        cmd_additional_args: "'"
-    },
     failed_mode: :focus
 }
 

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, skip: :all
 
   namespace :api, defaults: { format: 'json' } do
+
     mount_devise_token_auth_for 'User', at: 'auth'
+
     resources :users, only: [:index, :create, :update]
 
     # Test custom devise token auth sign in route
@@ -14,7 +16,6 @@ Rails.application.routes.draw do
     end
 
     # mount ActionCable.server => '/cable'
-    # resources :rooms, only: [:index, :create, :update, :destroy]
-    # resources :messages, only: [:index, :create, :update, :destroy]
+    resources :messages, only: [:index, :create, :update, :destroy]
   end
 end
