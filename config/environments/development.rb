@@ -2,12 +2,12 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Action Cable Config
-  # config.action_cable.url = 'http://localhost:3000/cable'
-  # config.web_socket_server_url = 'ws://localhost:3000/cable'
-  # config.action_cable.allowed_request_origins = [
-  #   'http://localhost:3005',
-  #   'http://localhost:3000',
-  # ]
+  config.action_cable.url = 'http://localhost:28080/cable'
+  config.web_socket_server_url = 'ws://localhost:28080/cable'
+  config.action_cable.allowed_request_origins = [
+    'http://localhost:3005',
+    'http://localhost:3000',
+  ]
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # In the development environment your application's code is reloaded on

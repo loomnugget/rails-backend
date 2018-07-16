@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       put 'reset_password', to: 'passwords#update'
     end
 
-    # mount ActionCable.server => '/cable'
+    mount ActionCable.server => '/cable'
     resources :messages, only: [:index, :create, :update, :destroy]
   end
 end

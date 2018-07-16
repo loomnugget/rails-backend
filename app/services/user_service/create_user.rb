@@ -14,8 +14,6 @@ module UserService
 
     def create_user
       user = User.new(params)
-      user.skip_confirmation!
-      # Send welcome email
       user.save!
       user
     end
