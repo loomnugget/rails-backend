@@ -25,4 +25,8 @@ class ChatChannel < ApplicationCable::Channel
   def away
     # current_user.away
   end
+
+  def send_message(data)
+    Message.create(body: data['message'])
+  end
 end

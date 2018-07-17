@@ -13,8 +13,7 @@ module ApplicationCable
 
     private
       def find_verified_user
-        # replace cookies with token/devise_token_auth logic
-        if verified_user = User.find_by(id: @current_user.id)
+        if verified_user = env['warden'].user
           verified_user
         else
           p "REJECTED?"
