@@ -12,13 +12,16 @@ module ApplicationCable
     end
 
     private
-      def find_verified_user
-        if verified_user = env['warden'].user
-          verified_user
-        else
-          p "REJECTED?"
-          reject_unauthorized_connection
-        end
+
+    def find_verified_user
+      # verified_user = User.find_by(token: request.params[:token])
+      if verified_user = User.last
+        # p "VERIFIED_USER: #{verified_user}"
+        # verified_user
+      else
+        reject_unauthorized_connection
       end
+    end
+
   end
 end

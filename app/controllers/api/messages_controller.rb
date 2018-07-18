@@ -11,6 +11,7 @@ class Api::MessagesController < ApiController
   def create
     @message = Message.new(message_params)
     if @message.save!
+      MessageBroadcastJob.perform_later @message
       @message
     else
       render json: { error: @message.errors, message: 'Creating message failed.' }, status: :unprocessable_entity

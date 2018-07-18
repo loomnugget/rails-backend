@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     end
 
     mount ActionCable.server => '/cable'
+    # Another way that might be better
+    # config.action_cable.mount_path = '/cable/:token'
+    
     resources :messages, only: [:index, :create, :update, :destroy]
   end
 end
