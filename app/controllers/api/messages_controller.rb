@@ -5,6 +5,8 @@ class Api::MessagesController < ApiController
     if params[:user_id].present?
       user = User.find(params[:user_id])
       @messages = user.messages
+    else
+      @messages = Message.all
     end
   end
 
