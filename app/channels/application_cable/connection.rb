@@ -13,30 +13,21 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
-      # warden.authenticate(auth_options)
-      p "CONNECTING"
-      params = request.query_parameters()
-      token = params["access-token"]
-      uid = params["uid"]
-      client = params["client"].to_s
+      self.current_user = find_verified_user
 
-      self.current_user = find_verified_user(token, uid, client)
+      params = request.query_parameters()
+      uid = params[:uid]
+      token = params[:token]
+      client_id = params[:client]
+
+      user = User.find_by(email: uid)
+      valid_user = user.valid_token?(token, client_id)
+      p "user: #{user}"
+      p "VALID_USER: #{valid_user} #{user}"
     end
 
-    private
-
-    def find_verified_user(token, uid, client_id)
-      user = User.find_by(email: uid)
-      # last_token = user.tokens[client_id]['last_token']
-      # p "client_id token: #{user.tokens[client_id]}"
-      # p "last_token: #{last_token}"
-      #
-      # token_hash = user.tokens[client_id]['token']
-      # tokens_match = DeviseTokenAuth::Concerns::User.tokens_match?(token_hash, token)
-      # p "token hash: #{token_hash}"
-      # p "tokens match: #{tokens_match}"
-
-      if verified_user = user
+    def find_verified_user
+      if verified_user = User.last
         verified_user
       else
         reject_unauthorized_connection

@@ -12,14 +12,6 @@ class ChatChannel < ApplicationCable::Channel
 
   def subscribed
     stream_from "ChatChannel"
-    # Can also stream from a model: stream_for(@messages)
-
-    # Example broadcasting for this channel
-    # ActionCable.server.broadcast "ChatChannel", author: 'test', content: 'Rails is just swell'
-
-    # Example of rejection that will invoke the #reject callback on client side
-    # @room = Chat::Room[params[:room_number]]
-    # reject unless current_user.can_access?(@room)
   end
 
   def unsubscribed
@@ -27,9 +19,7 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    p "SEND MESSAGE: #{data}"
     message = data["body"]
-    message = Message.create(content: message)
-    ActionCable.server.broadcast("ChatChannel", { id: message.id, content: message.content, user_id: current_user.id })
+    message = Message.create(content: message, user_id: current_user.id)
   end
 end

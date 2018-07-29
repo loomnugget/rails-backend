@@ -2,7 +2,7 @@ class ApiController < ActionController::Base
   include DeviseTokenAuth::Concerns::SetUserByToken
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead. (with: :null_session)
-  protect_from_forgery prepend: true
+  protect_from_forgery with: :null_session
 
   before_action :authenticate_user!
 
