@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     mount_devise_token_auth_for 'User', at: 'auth'
 
     resources :users, only: [:index, :create, :update]
+    get 'users/export_csv', to: 'users#export_csv', format: 'csv'
+    get 'users/export_pdf', to: 'users#export_pdf', format: 'pdf'
 
     # Test custom devise token auth sign in route
     post 'login', to: 'sessions#create'
@@ -16,9 +18,7 @@ Rails.application.routes.draw do
     end
 
     mount ActionCable.server => '/cable'
-    # Another way that might be better
-    # config.action_cable.mount_path = '/cable/:token'
-    
+
     resources :messages, only: [:index, :create, :update, :destroy]
   end
 end
