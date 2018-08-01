@@ -1,24 +1,42 @@
-# README
+# Summary
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby Version: 2.5.1
+Rails Version: 5.2.0
 
-Things you may want to cover:
+# Get started 
 
-* Ruby version
+### Start Rails Server
+`rails -b 0.0.0.0 -p 3005`
 
-* System dependencies
+### Start Action Cable Server
+`bundle exec puma -p 28080 cable/config.ru`
 
-* Configuration
+### Run tests
+`guard`
 
-* Database creation
+# Database Config 
+Create a development database:
+`createdb development_db_name`
 
-* Database initialization
+Create a database.yml file:
+```
+development:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: [name of development database]
+  pool:     5
+  username:
+  password:
+  template: template0
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+test:
+  adapter:  postgresql
+  host:     localhost
+  encoding: unicode
+  database: test_db<%= ENV['TEST_ENV_NUMBER'] %>
+  pool:     5
+  username:
+  password:
+  template: template0
+```
